@@ -37,7 +37,7 @@ class App extends React.Component {
 
   handleScroll = (e) =>{
     // Detect when scrolled to bottom
-    if ((window.innerHeight + window.scrollTop()) >= document.body.scrollHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
       this.addPokemon();
     }
   }
@@ -51,6 +51,7 @@ class App extends React.Component {
 
     if (this.state.pokemon.length === 0) this.addPokemon();
     window.addEventListener("scroll", this.handleScroll)
+    window.addEventListener("touchmove", this.handleScroll)
     
   }
 
