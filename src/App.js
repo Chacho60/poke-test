@@ -51,8 +51,13 @@ class App extends React.Component {
 
     if (this.state.pokemon.length === 0) this.addPokemon();
     window.addEventListener("scroll", this.handleScroll)
-    window.addEventListener("touchmove", this.handleScroll)
+    window.addEventListener("touchend", this.handleScroll)
     
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener("scroll");
+    window.removeEventListener("touchend")
   }
 
   render(){
