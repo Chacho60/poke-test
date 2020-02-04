@@ -1,0 +1,31 @@
+.card{
+  list-style: none;
+  height: 130px;
+  width: 20%;
+  margin: 3px 3px 3px 3px;
+  text-align: right;
+  background-color: #F56E48;
+  border-radius: 10px;
+}
+
+.pokedata{
+  display: flex;
+  padding: 5px 5px 5px 5px;
+  background-color: #86351E;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.pokename{
+  width: 75%;
+  text-align: left;
+}
+
+.pokeindex{
+  width: 25%;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .card{width: 33%;}
+}
