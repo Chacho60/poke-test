@@ -1,16 +1,22 @@
+
 .App {
   text-align: center;
   background-color: #404257;
   background-image: url("background.png");
 }
 
-.App-body {
+.App-body{
+  display: flex;
+}
+
+.cards {
   min-height: 100vh;
   justify-content: center;
   font-size: calc(1px + 2vmin);
   color: white;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .App-header{
@@ -45,3 +51,27 @@
 .searchTerm:focus{
   color: #86351E;
 }
+
+.pagination{
+  color: white;
+  padding-top: 50%;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: rgb(61, 50, 83);
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.pagination:hover{
+  background-color: #F56E48;
+}
+
+.pageDisabled{
+  display: none;
+
+}
+
+

@@ -5,15 +5,18 @@ import Pokecard from './Pokecard'
 class App extends React.Component {
   state = {
     pokemon:[],
-    searchTerm: ""
+    searchTerm: "",
+    page: 1
   }
 
   searchInput = React.createRef();
 
-  addPokemon = () =>{
+  addPokemon = (base, counter) =>{
     const promises = [];
-
-    for(let i = 1; i < (this.state.pokemon.length + 20); i++){
+    const page = this.state.page;
+    console.log(page)
+    console.log(counter)
+    for(let i = base; i < counter; i++){
       promises.push(
         fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
         .then(res => res.json())
@@ -35,11 +38,21 @@ class App extends React.Component {
     
   }
 
-  handleScroll = (e) =>{
-    // Detect when scrolled to bottom
-    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-      this.addPokemon();
-    }
+  handleNext = () =>{
+    const next = this.state.page + 20
+    this.addPokemon(next, next + 20)
+    this.setState({ 
+      page : next,
+     })
+  }
+
+  handlePrevious = () =>{
+    const previous = this.state.page - 20
+    this.addPokemon(previous, previous + 20)
+
+    this.setState({ 
+      page : previous,
+     })
   }
 
   filterCards = e =>{
@@ -49,16 +62,17 @@ class App extends React.Component {
 
   componentDidMount() {
 
-    if (this.state.pokemon.length === 0) this.addPokemon();
-    window.addEventListener("scroll", this.handleScroll)
+    if (this.state.pokemon.length === 0) this.addPokemon(1, 20)
     
   }
 
   render(){
+    const {searchTerm, page} = this.state;
     const pokecards = this.state.pokemon.filter((mon) => mon.name.includes(this.state.searchTerm.toLowerCase()))
     console.log(pokecards)
     return (
       <div className="App">
+          
           <div className="App-header">
             <h1 className="title">Pokedex</h1>
             <div class="searchBar">
@@ -66,15 +80,21 @@ class App extends React.Component {
             </div>
           </div>
           <div className="App-body">
-            {pokecards.map(pokemon =>{
-              return(<Pokecard
-                name={pokemon.name}
-                id={pokemon.id}
-                sprite={pokemon.sprite}
-              />)
-            })}
+            {page === 1 || searchTerm !== "" ? <div className="pageDisabled"></div>:<div className="pagination" onClick={this.handlePrevious}><i class="fa fa-arrow-left"></i></div>}
+            <ul className="cards">
+              {pokecards.map(pokemon =>{
+                return(<Pokecard
+                  name={pokemon.name}
+                  id={pokemon.id}
+                  sprite={pokemon.sprite}
+                />)
+              })}
+            </ul>
+            {searchTerm !== "" ? <div className="pageDisabled"></div>:<div className="pagination" onClick={this.handleNext}><i class="fa fa-arrow-right"></i></div>}
           </div>
-        </div>
+          
+      </div>
+          
     );
   }
   
