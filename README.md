@@ -1,68 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Pokedex Test
 
-## Available Scripts
+------
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+This a react app for integ.ro showcasing some react skills. Tt was made using `create-react-app` and no framework or package outside create-react-app was used.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## **Pagination**
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Pagination was implemented with buttons on each side of the screen, one button goes forward and calls the function that fetches the next 20 indexes of the current saved state from the API. The other one goes backwards and substracts by 20 the indexes from the API call.
 
-### `npm test`
+  handleNext = () =>{
+    const next = this.state.page + 20
+    this.addPokemon(next, next + 20)
+    this.setState({ 
+      page : next,
+     })
+  }
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  handlePrevious = () =>{
+    const previous = this.state.page - 20
+    this.addPokemon(previous, previous + 20)
 
-### `npm run build`
+    this.setState({ 
+      page : previous,
+     })
+  }
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Search
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Search functionality was implemented with just a filter function on the Pokemon array, we have a search condition on the state that allows us to compare the current array of pokemon with the term to search. Array.prototype.filter() makes the match and it only maps the filtered cards.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+ filterCards = e =>{
+    const searchTerm = this.searchInput.current.value;
+    this.setState({ searchTerm })
+  }
 
-### `npm run eject`
+.
+.
+.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  render(){
+    const pokecards = this.state.pokemon.filter((mon) => 		  mon.name.includes(this.state.searchTerm.toLowerCase()))
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Useful Links
 
-## Learn More
+This project is hosted in github as: https://github.com/Chacho60/poke-test
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+It is also deployed on netlify for convenience: https://eager-ramanujan-f699c9.netlify.com/
