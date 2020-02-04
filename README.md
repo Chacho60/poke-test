@@ -55,4 +55,4 @@ Search functionality was implemented with just a filter function on the Pokemon 
 
 This project is hosted in github as: https://github.com/Chacho60/poke-test
 
-It is also deployed on netlify for convenience: https://eager-ramanujan-f699c9.netlify.com/
+It is also deployed on netlify for convenience: https://objective-joliot-376222.netlify.com/
