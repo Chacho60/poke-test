@@ -8,8 +8,9 @@ This a react app for integ.ro showcasing some react skills. Tt was made using `c
 
 ## **Pagination**
 
-Pagination was implemented with buttons on each side of the screen, one button goes forward and calls the function that fetches the next 20 indexes of the current saved state from the API. The other one goes backwards and substracts by 20 the indexes from the API call.
+Pagination was implemented with buttons on each side of the screen, one button goes forward and calls the function that fetches the next 20 indexes of the current saved state from the API. The other one goes backwards and subtracts by 20 the indexes from the API call.
 
+```
   handleNext = () =>{
     const next = this.state.page + 20
     this.addPokemon(next, next + 20)
@@ -26,6 +27,9 @@ Pagination was implemented with buttons on each side of the screen, one button g
       page : previous,
      })
   }
+```
+
+
 
 ## Search
 
